@@ -1,13 +1,12 @@
-import { CSSReset, ThemeProvider } from "@chakra-ui/core";
-import theme from "../theme";
+import { ApolloProvider } from "@apollo/client";
+import { apolloClient } from "utils/apolloClient";
 
-function MyApp({ Component, pageProps }: any) {
+function App({ Component, pageProps }: any) {
   return (
-    <ThemeProvider theme={theme}>
-      <CSSReset />
+    <ApolloProvider client={apolloClient}>
       <Component {...pageProps} />
-    </ThemeProvider>
+    </ApolloProvider>
   );
 }
 
-export default MyApp;
+export default App;
