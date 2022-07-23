@@ -3,12 +3,16 @@ import { Module } from "@nestjs/common";
 import { GraphQLModule } from "@nestjs/graphql";
 import { DirectiveLocation, GraphQLDirective } from "graphql";
 import { upperDirectiveTransformer } from "./common/directives/upper-case.directive";
-import { RecipesModule } from "./recipes/recipes.module";
+import { ExpenseModule } from "./expenses/expense.module";
 
 @Module({
   imports: [
-    RecipesModule,
+    ExpenseModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      cors: {
+        origin: "http://localhost:3000",
+        credentials: true,
+      },
       driver: ApolloDriver,
       autoSchemaFile: "schema.gql",
       transformSchema: (schema) => upperDirectiveTransformer(schema, "upper"),

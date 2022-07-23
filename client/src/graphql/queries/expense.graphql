@@ -1,0 +1,6 @@
+query Expenses {
+  expenses {
+    id
+    category
+  }
+}

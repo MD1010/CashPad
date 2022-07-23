@@ -1,24 +1,23 @@
-import { usePostsQuery } from "../generated/graphql";
+import { useExpensesQuery, Expense } from "generated/graphql";
+import { useEffect } from "react";
 
 const Index = () => {
-  const { data, error, loading, fetchMore, variables } = usePostsQuery({
-    variables: {
-      limit: 15,
-      cursor: null,
-    },
-    notifyOnNetworkStatusChange: true,
-  });
+  const { data, error, loading } = useExpensesQuery();
+  useEffect(() => {
+    if (error) console.error(error);
+    if (loading) console.log("loading...");
+  }, [error, loading]);
 
-  if (!loading && !data) {
-    return (
-      <div>
-        <div>you got query failed for some reason</div>
-        <div>{error?.message}</div>
-      </div>
-    );
-  }
-
-  return <div>Index Page</div>;
+  return data ? (
+    <div>
+      {data?.expenses.map((x) => (
+        <>
+          <div>id: {x.id}</div>
+          <div>category: {x.category}</div>
+        </>
+      ))}
+    </div>
+  ) : null;
 };
 
 export default Index;
