@@ -1,5 +1,4 @@
-import { Directive, Field, ID, ObjectType, Int } from "@nestjs/graphql";
-import { IsOptional } from "class-validator";
+import { Directive, Field, ID, Int, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class Expense {

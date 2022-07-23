@@ -9,6 +9,10 @@ import { ExpenseModule } from "./expenses/expense.module";
   imports: [
     ExpenseModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      cors: {
+        origin: "http://localhost:3000",
+        credentials: true,
+      },
       driver: ApolloDriver,
       autoSchemaFile: "schema.gql",
       transformSchema: (schema) => upperDirectiveTransformer(schema, "upper"),

@@ -1,0 +1,9 @@
+mutation AddExpense($title: String!, $price: Int!) {
+  addExpense(newExpenseData: { title: $title, price: $price }){
+    id,
+    description,
+    date,
+    price,
+    category
+  }
+}
